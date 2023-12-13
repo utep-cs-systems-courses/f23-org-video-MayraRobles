@@ -42,21 +42,18 @@ switch_interrupt_handler()
     
   /* Everytime a button is pressed, change sequence state*/
   if ((p2val & SW1) == 0){ //Button 1 was pressed
-    //  debounce();
     button_sequence_state = 0;  
   }
   else if ((p2val & SW2) == 0){ //Button 2 was pressed
-    // debounce();
     button_sequence_state = 1;
   }
   else if ((p2val & SW3) == 0){ //Button 3 was pressed
-    // debounce();
     button_sequence_state = 2;
   }
   else if ((p2val & SW4) == 0){ //Button 4 was pressed
-    // debounce();
     button_sequence_state = 3;
-    red_green_toggle_state_advance();
+    rectangles_two_notes_state_advance();
+    //red_green_toggle_state_advance();
   }
   __enable_interrupt();
 }

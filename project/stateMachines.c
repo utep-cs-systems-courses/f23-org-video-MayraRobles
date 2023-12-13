@@ -1,12 +1,62 @@
 #include <msp430.h> 
 #include "stateMachines.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
 #include "led.h"
 #include "buzzer.h"
 #include "notes.h"
 
-
 static int cur_note = 0;
 
+// void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height, 
+//		   u_int colorBGR)
+
+void rectangle_inside_rectangle_advace()
+{
+  static char cur_state = 0;
+  
+  switch(cur_state) {
+  case 0:
+    fillRectangle(10,10,50,100, COLOR_GREEN);
+    cur_state ++;
+    break;
+  case 1:
+    fillRectangle(20,20,30,90, COLOR_BLUE);
+    cur_state ++;
+    break;
+  case 2:
+    fillRectangle(20,20,30,90, COLOR_PINK);
+    cur_state++;
+    break;
+  case 3:
+    fillRectangle(20,20,30,90, COLOR_YELLOW);
+    cur_state ++;
+    break;
+  case 4:
+    fillRectangle(20,20,30,90, COLOR_ORANGE);   
+    cur_state ++;
+    break;
+  default:
+    cur_state = 0;
+    break;  
+}
+
+
+void rectangles_two_notes_state_advance()
+{
+  static char cur_state = 1;
+
+  if (cur_state == 1){
+    buzzer_set_period(A5);
+    rectangle_inside_rectangle_advace;
+    cur_state ++;
+  } else if (cur_state == 2){
+    buzzer_set_period(G5);
+    rectangle_inside_rectangle_advace;
+    cur_state = 1;
+  }
+}
+ 
 
 void dim_green_state_advance()
 {
@@ -156,8 +206,8 @@ void binary_count_state_advance()
 void update_blink_and_buzz(int frequency)
 {
   buzzer_set_period(frequency);
-  binary_count_state_advance();
-  led_update();
+  //binary_count_state_advance();
+  //led_update();
   cur_note ++;
 }
  
