@@ -17,7 +17,7 @@ int main(void) {
   enableWDTInterrupts();/* enable periodic interrupt */
 
 
-  or_sr(0x18);/* CPU off, GIE on */
+  or_sr(0x8);/* CPU off, GIE on */
 
-  clearScreen(COLOR_BLUE);
+  clearScreen(COLOR_ORANGE);
 }

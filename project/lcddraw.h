@@ -2,14 +2,11 @@
  *  \brief Adapted from RobG's EduKit
  */
 
-
 #ifndef lcddraw_included
 #define lcddraw_included
 
-
 typedef unsigned char u_char;
 typedef unsigned int u_int;
-
 
 /** Draw single pixel at col, row 
  *
@@ -18,7 +15,6 @@ typedef unsigned int u_int;
  *  \param colorBGR Color of pixel in BGR
  */
 void drawPixel(u_char col, u_char row, u_int colorBGR);
-
 
 /** Fill rectangle
  *
@@ -30,13 +26,11 @@ void drawPixel(u_char col, u_char row, u_int colorBGR);
  */
 void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height, u_int colorBGR);
 
-
 /** Clear screen (fill with color)
  *  
  *  \param colorBGR The color to fill screen
  */
 void clearScreen(u_int colorBGR);
-
 
 /** Draw string at col,row
  *  Type:
@@ -50,16 +44,14 @@ void clearScreen(u_int colorBGR);
  *  \param fgColorBGR Foreground color in BGR
  *  \param bgColorBGR Background color in BGR
  */
-void drawString5x7(u_char col, u_char row, char *string,
+void drawString5x7(u_char col, u_char row, char *string, 
 		   u_int fgColorBGR, u_int bgColorBGR);
-
 
 /** 5x7 font - this function draws background pixels
  *  Adapted from RobG's EduKit
  */
-void drawChar5x7(u_char col, u_char row, char c,
+void drawChar5x7(u_char col, u_char row, char c, 
 		 u_int fgColorBGR, u_int bgColorBGR);
-
 
 /** Draw rectangle outline
  *  
@@ -72,3 +64,5 @@ void drawChar5x7(u_char col, u_char row, char c,
 void drawRectOutline(u_char colMin, u_char rowMin, u_char width, u_char height,
 		     u_int colorBGR);
 #endif // included
+
+
