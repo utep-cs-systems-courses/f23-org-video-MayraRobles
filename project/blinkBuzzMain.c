@@ -1,6 +1,5 @@
 #include <msp430.h>
 #include <libTimer.h>
-//#include "timerLib/libTimer.h"
 #include "led.h"
 #include "buzzer.h"
 #include "switches.h"
@@ -20,5 +19,5 @@ int main(void) {
 
   or_sr(0x18);/* CPU off, GIE on */
 
-  //clearScreen(COLOR_ORANGE);
+  clearScreen(COLOR_BLUE);
 }
