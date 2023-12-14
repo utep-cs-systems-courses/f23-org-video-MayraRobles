@@ -16,24 +16,23 @@ void rectangle_inside_rectangle_advance()
   static char cur_state = 0;
   switch(cur_state) {
   case 0:
-    //clearScreen(COLOR_GREEN);
-    //fillRectangle(10,10,50,100, COLOR_GREEN);
+    clearScreen(COLOR_GREEN);
     cur_state ++;
     break;
   case 1:
-    //fillRectangle(20,20,30,90, COLOR_BLUE);
+    fillRectangle(20, 10, 90, 140, COLOR_BLUE);
     cur_state ++;
     break;
   case 2:
-    //fillRectangle(20,20,30,90, COLOR_PINK);
+    fillRectangle(35, 20, 62, 120, COLOR_PINK);
     cur_state++;
     break;
   case 3:
-    //fillRectangle(20,20,30,90, COLOR_YELLOW);
+    fillRectangle(45, 30, 43, 100, COLOR_YELLOW);
     cur_state ++;
     break;
   case 4:
-    //fillRectangle(20,20,30,90, COLOR_ORANGE);
+    fillRectangle(55, 38, 24, 85, COLOR_ORANGE);
     cur_state = 0;
     break;
   default:

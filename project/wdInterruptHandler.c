@@ -1,6 +1,8 @@
 #include <msp430.h>
 #include "buzzer.h"
 #include "led.h"
+#include "lcddraw.h"
+#include "lcdutils.h"
 #include "switches.h"
 #include "stateMachines.h"
 

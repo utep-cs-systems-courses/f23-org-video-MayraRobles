@@ -2,6 +2,8 @@
 #include "switches.h"
 #include "stateMachines.h"
 #include "buzzer.h"
+#include "lcddraw.h"
+#include "lcdutils.h"
 
 char switch_state_down, switch_state_changed; /* effectively boolean */
 
@@ -36,7 +38,8 @@ switch_interrupt_handler()
     
   /* Everytime a button is pressed, change sequence state*/
   if ((p2val & SW1) == 0){ //Button 1 was pressed
-    button_sequence_state = 0;  
+    button_sequence_state = 0;
+    drawRobot();
   }
   else if ((p2val & SW2) == 0){ //Button 2 was pressed
     button_sequence_state = 1;

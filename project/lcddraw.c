@@ -115,3 +115,24 @@ void drawRectOutline(u_char colMin, u_char rowMin, u_char width, u_char height,
   fillRectangle(colMin + width, rowMin, 1, height, colorBGR);
 }
 
+void drawRobot()
+{
+  clearScreen(COLOR_BLUE);
+  fillRectangle(45, 55, 40, 10, COLOR_RED); // Body
+  fillRectangle(48, 65, 34, 35, COLOR_RED); // Body
+  fillRectangle(50, 19, 28, 28, COLOR_RED); // Head
+  fillRectangle(59, 47, 11, 9, COLOR_PINK); // Neck
+  fillRectangle(85, 55, 10, 40, COLOR_YELLOW); // Right arm
+  fillRectangle(35, 55, 10, 40, COLOR_YELLOW); // Left arm
+  fillRectangle(50, 100, 12, 15, COLOR_GREEN); // Left leg
+  fillRectangle(67, 100, 12, 15, COLOR_GREEN); // Right leg
+  fillRectangle(52, 115, 9, 18, COLOR_GREEN); // Left leg p2
+  fillRectangle(68, 115, 9, 18, COLOR_GREEN); // Right leg p2
+  fillRectangle(46, 133, 15, 8, COLOR_RED); // Left foot
+  fillRectangle(68, 133, 15, 8, COLOR_RED); // Right foot
+  fillRectangle(42, 25, 8, 15, COLOR_GREEN); // Left ear
+  fillRectangle(78, 25, 8, 15, COLOR_GREEN); // Right ear
+  fillRectangle(59, 38, 10, 4, COLOR_BLACK); // Mouth
+  fillRectangle(54, 25, 8, 8, COLOR_BLACK); // Left eye
+  fillRectangle(67, 25, 8, 8, COLOR_BLACK); // Right eye
+}
