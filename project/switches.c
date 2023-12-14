@@ -27,12 +27,6 @@ switch_init()/* setup switch */
   switch_update_interrupt_sense();
 }
 
-// Add a delay function to introduce a short delay for debouncing
-void debounce()
-{
-  __delay_cycles(1000); // Adjust the delay as needed
-}
-
 void 
 switch_interrupt_handler()
 { 

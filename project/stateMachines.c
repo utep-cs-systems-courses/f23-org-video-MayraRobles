@@ -11,48 +11,47 @@ static int cur_note = 0;
 // void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height, 
 //		   u_int colorBGR)
 
-void rectangle_inside_rectangle_advace()
+void rectangle_inside_rectangle_advance()
 {
   static char cur_state = 0;
-  
   switch(cur_state) {
   case 0:
-    fillRectangle(10,10,50,100, COLOR_GREEN);
+    //clearScreen(COLOR_GREEN);
+    //fillRectangle(10,10,50,100, COLOR_GREEN);
     cur_state ++;
     break;
   case 1:
-    fillRectangle(20,20,30,90, COLOR_BLUE);
+    //fillRectangle(20,20,30,90, COLOR_BLUE);
     cur_state ++;
     break;
   case 2:
-    fillRectangle(20,20,30,90, COLOR_PINK);
+    //fillRectangle(20,20,30,90, COLOR_PINK);
     cur_state++;
     break;
   case 3:
-    fillRectangle(20,20,30,90, COLOR_YELLOW);
+    //fillRectangle(20,20,30,90, COLOR_YELLOW);
     cur_state ++;
     break;
   case 4:
-    fillRectangle(20,20,30,90, COLOR_ORANGE);   
-    cur_state ++;
+    //fillRectangle(20,20,30,90, COLOR_ORANGE);
+    cur_state = 0;
     break;
   default:
     cur_state = 0;
-    break;  
+    break;
+  }
 }
-
 
 void rectangles_two_notes_state_advance()
 {
   static char cur_state = 1;
-
   if (cur_state == 1){
     buzzer_set_period(A5);
-    rectangle_inside_rectangle_advace;
+    rectangle_inside_rectangle_advance();
     cur_state ++;
   } else if (cur_state == 2){
     buzzer_set_period(G5);
-    rectangle_inside_rectangle_advace;
+    rectangle_inside_rectangle_advance();
     cur_state = 1;
   }
 }
@@ -108,25 +107,6 @@ void dim_red_state_advance()
 }
 
 
-void red_green_toggle_state_advance()
-{
-  enum State {RED, GREEN};
-  static enum State cur_state = RED;
-
-  if (cur_state == RED){
-    red_on = 1;
-    green_on = 0;
-    buzzer_set_period(A5);
-    cur_state = GREEN;
-  } else if (cur_state == GREEN){
-    green_on = 1;
-    red_on = 0;
-    buzzer_set_period(G5);
-    cur_state = RED;
-  }
-   led_update();
-}
-
 void siren_state_advance()
 {
   static char siren_state = 0;
@@ -140,7 +120,7 @@ void siren_state_advance()
     siren_state ++;
     break;
   case 1:
-  case 2:
+   case 2:
     green_on = 0;
     red_on = 1 ;
     cur_cycle += 300;
