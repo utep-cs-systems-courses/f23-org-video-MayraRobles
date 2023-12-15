@@ -1,11 +1,12 @@
-## My Blinky Buzzy Toy
+## My Silly Toy
 
 This program is a silly toy that runs on an msp430. The behavior for each
 button is:
-- S1: Plays Canon in D while the green and red leds count to 3 in binary
-- S2: Shows the dimming of lights. Red goes for dim to bright and green goes
-from bright to dim. No sound.
-- S3: Plays a sound that goes from low to high and high to low
-- S4: Changes the color led and the note every time it is pressed
+- S1: Plays Canon in D while snow falls on a cute little robot
+- S2: Shows an inspirational quote in 5x7 font
+- S3: Plays a sound that goes from low to high and high to low, simulating a
+siren. It also adds circles to the screen
+- S4: Every time it is pressed, a rectangle is drawn inside the previous
+rectangle and the note is changed
 
 ## How to run
