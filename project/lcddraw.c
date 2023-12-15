@@ -115,24 +115,105 @@ void drawRectOutline(u_char colMin, u_char rowMin, u_char width, u_char height,
   fillRectangle(colMin + width, rowMin, 1, height, colorBGR);
 }
 
+/** Draw robot
+ *  It draws a cool little robot
+ */
 void drawRobot()
 {
-  clearScreen(COLOR_BLUE);
-  fillRectangle(45, 55, 40, 10, COLOR_RED); // Body
-  fillRectangle(48, 65, 34, 35, COLOR_RED); // Body
-  fillRectangle(50, 19, 28, 28, COLOR_RED); // Head
-  fillRectangle(59, 47, 11, 9, COLOR_PINK); // Neck
+  fillRectangle(45, 55, 40, 10, COLOR_RED);    // Body
+  fillRectangle(48, 65, 34, 35, COLOR_RED);    // Body
+  fillRectangle(50, 19, 28, 28, COLOR_RED);    // Head
+  fillRectangle(59, 47, 11, 9, COLOR_PINK);    // Neck
   fillRectangle(85, 55, 10, 40, COLOR_YELLOW); // Right arm
   fillRectangle(35, 55, 10, 40, COLOR_YELLOW); // Left arm
-  fillRectangle(50, 100, 12, 15, COLOR_GREEN); // Left leg
-  fillRectangle(67, 100, 12, 15, COLOR_GREEN); // Right leg
-  fillRectangle(52, 115, 9, 18, COLOR_GREEN); // Left leg p2
-  fillRectangle(68, 115, 9, 18, COLOR_GREEN); // Right leg p2
-  fillRectangle(46, 133, 15, 8, COLOR_RED); // Left foot
-  fillRectangle(68, 133, 15, 8, COLOR_RED); // Right foot
-  fillRectangle(42, 25, 8, 15, COLOR_GREEN); // Left ear
-  fillRectangle(78, 25, 8, 15, COLOR_GREEN); // Right ear
-  fillRectangle(59, 38, 10, 4, COLOR_BLACK); // Mouth
-  fillRectangle(54, 25, 8, 8, COLOR_BLACK); // Left eye
-  fillRectangle(67, 25, 8, 8, COLOR_BLACK); // Right eye
+  fillRectangle(50, 100, 12, 15, COLOR_FOREST_GREEN); // Left leg
+  fillRectangle(67, 100, 12, 15, COLOR_FOREST_GREEN); // Right leg
+  fillRectangle(52, 115, 9, 18, COLOR_GREEN);  // Left leg p2
+  fillRectangle(68, 115, 9, 18, COLOR_GREEN);  // Right leg p2
+  fillRectangle(46, 133, 15, 8, COLOR_RED);    // Left foot
+  fillRectangle(68, 133, 15, 8, COLOR_RED);    // Right foot
+  fillRectangle(42, 25, 8, 15, COLOR_GREEN);   // Left ear
+  fillRectangle(78, 25, 8, 15, COLOR_GREEN);   // Right ear
+  fillRectangle(59, 38, 10, 4, COLOR_BLACK);   // Mouth
+  fillRectangle(54, 25, 8, 8, COLOR_BLACK);    // Left eye
+  fillRectangle(67, 25, 8, 8, COLOR_BLACK);    // Right eye
+}
+
+/*
+ * Draw little squares in the background
+ */
+void drawStarryBackground1()
+{
+  fillRectangle(5, 5, 4, 4, COLOR_WHITE);
+  fillRectangle(15, 8, 4, 4, COLOR_BLUE);
+  fillRectangle(90, 5, 4, 4, COLOR_WHITE);
+  fillRectangle(5, 100, 4, 4, COLOR_BLUE);
+  fillRectangle(100, 100, 4, 4, COLOR_WHITE);
+  fillRectangle(10, 50, 4, 4, COLOR_BLUE);
+  fillRectangle(110, 20, 4, 4, COLOR_WHITE);
+  fillRectangle(120, 150, 4, 4, COLOR_BLUE);
+  fillRectangle(30, 120, 4, 4, COLOR_WHITE);
+  fillRectangle(150, 140, 4, 4, COLOR_BLUE);
+  fillRectangle(25, 140, 4, 4, COLOR_WHITE);
+  fillRectangle(100, 140, 4, 4, COLOR_BLUE);
+  fillRectangle(115, 70, 4, 4, COLOR_WHITE);
+}
+
+/*
+ * Draw littles squared in the background
+ */
+void drawStarryBackground2()
+{
+  fillRectangle(5, 5, 4, 4, COLOR_BLUE);
+  fillRectangle(15, 8, 4, 4, COLOR_WHITE);
+  fillRectangle(90, 5, 4, 4, COLOR_BLUE);
+  fillRectangle(5, 100, 4, 4, COLOR_WHITE);
+  fillRectangle(100, 100, 4, 4, COLOR_BLUE);
+  fillRectangle(10, 50, 4, 4, COLOR_WHITE);
+  fillRectangle(110, 20, 4, 4, COLOR_BLUE);
+  fillRectangle(120, 150, 4, 4, COLOR_WHITE);
+  fillRectangle(30, 120, 4, 4, COLOR_BLUE);
+  fillRectangle(150, 140, 4, 4, COLOR_WHITE);
+  fillRectangle(25, 140, 4, 4, COLOR_BLUE);
+  fillRectangle(100, 140, 4, 4, COLOR_WHITE);
+  fillRectangle(115, 70, 4, 4, COLOR_BLUE);
+}
+
+/*
+ * Show a dramatic Nietzsche quote
+ */
+void nietzscheDramaticQuote()
+{
+  drawString5x7(8, 45, "HE WHO HAS A WHY", COLOR_BLACK, COLOR_YELLOW);
+  drawString5x7(8, 65, "TO LIVE FOR CAN BEAR", COLOR_BLACK, COLOR_YELLOW);
+  drawString5x7(8, 85, "ALMOST ANY HOW", COLOR_BLACK, COLOR_YELLOW);
+}
+
+
+/*
+ * Draws circles
+ */
+void drawCircle(short row, short col, u_int r, u_int colorBGR)
+{
+  int sr = 0;
+  for (int j = 1; j <=r; j++)
+    sr += j;
+  int x = r;
+  int y = 0;
+  int sx = sr;
+  int sy = 0;
+  while (y <= (r/2)) { // rows less than r/2
+    drawPixel(x+col, y+row, colorBGR);
+    drawPixel(x+col, -y+row, colorBGR);
+    drawPixel(-x+col, y+row, colorBGR);
+    drawPixel(-x+col, -y+row, colorBGR);
+    drawPixel(y+col, x+row, colorBGR);
+    drawPixel(y+col, -x+row, colorBGR);
+    drawPixel(-y+col, x+row, colorBGR);
+    drawPixel(-y+col, -x+row, colorBGR);
+    y+=1; sy+=y;
+    if ((sx + sy) > sr) { // if outside the circle
+      sx -= x;  x -= 1;  // decrease x
+    }
+  }
 }

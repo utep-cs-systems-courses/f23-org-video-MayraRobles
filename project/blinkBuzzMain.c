@@ -18,6 +18,6 @@ int main(void) {
 
 
   or_sr(0x8);/* CPU off, GIE on */
-
-  clearScreen(COLOR_ORANGE);
+  
+  clearScreen(COLOR_BLUE);
 }

@@ -39,18 +39,22 @@ switch_interrupt_handler()
   /* Everytime a button is pressed, change sequence state*/
   if ((p2val & SW1) == 0){ //Button 1 was pressed
     button_sequence_state = 0;
+    clearScreen(COLOR_BLUE);
     drawRobot();
   }
   else if ((p2val & SW2) == 0){ //Button 2 was pressed
     button_sequence_state = 1;
+    buzzer_set_period(0);
+    clearScreen(COLOR_YELLOW);
+    nietzscheDramaticQuote();
   }
   else if ((p2val & SW3) == 0){ //Button 3 was pressed
     button_sequence_state = 2;
+    clearScreen(COLOR_MAGENTA);
   }
   else if ((p2val & SW4) == 0){ //Button 4 was pressed
     button_sequence_state = 3;
     rectangles_two_notes_state_advance();
-    //red_green_toggle_state_advance();
   }
   __enable_interrupt();
 }

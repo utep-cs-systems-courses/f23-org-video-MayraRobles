@@ -8,9 +8,6 @@
 
 static int cur_note = 0;
 
-// void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height, 
-//		   u_int colorBGR)
-
 void rectangle_inside_rectangle_advance()
 {
   static char cur_state = 0;
@@ -56,56 +53,6 @@ void rectangles_two_notes_state_advance()
 }
  
 
-void dim_green_state_advance()
-{
-  static int count = 0;
-  static int blinkLimitGreen = 7;  // duty cycle = 1/blinkLimit
-  static int blinkCountGreen = 0;  // cycles 0...blinkLimit-1
-
-  count ++;
-  blinkCountGreen ++;
-  
-  if (blinkCountGreen >= blinkLimitGreen) { // on for 1 interrupt period
-    blinkCountGreen = 0;
-    green_on = 1;
-  } else {          // off for blinkLimit - 1 interrupt periods
-     green_on = 0;
-  }
-   
-  if (count >= 500) {  // once each two seconds, to make brightness patterns change slower
-    count = 0;
-    blinkLimitGreen --; // increase duty cycle to go from dim-to-bright
-    if (blinkLimitGreen <= 0)    
-      blinkLimitGreen = 7;
-  }
-  led_update();  
-}
-
-
-void dim_red_state_advance()
-{
-  static int count = 0;
-  static int blinkLimitRed = 0;
-  static int blinkCountRed = 0;
- 
-  count ++;
-  blinkCountRed ++;
-  if (blinkCountRed >= blinkLimitRed) { // on for 1 interrupt period
-    blinkCountRed = 0;
-    red_on = 1;
-  } else            // off for blinkLimit - 1 interrupt periods
-    red_on = 0;
-
-  if (count >= 500) {  // once each two seconds, to make brightness patterns change slower
-    count = 0;
-    blinkLimitRed ++;   // decrease duty cycle to go from bright-to-dim
-    if (blinkLimitRed >= 5)
-      blinkLimitRed = 0;       
-  }
-  led_update();
-}
-
-
 void siren_state_advance()
 {
   static char siren_state = 0;
@@ -113,80 +60,68 @@ void siren_state_advance()
   
   switch(siren_state) {
   case 0:
-    green_on = 1;
-    red_on = 0;
+    clearScreen(COLOR_MAGENTA);
     cur_cycle = 500;
     siren_state ++;
     break;
   case 1:
-   case 2:
-    green_on = 0;
-    red_on = 1 ;
+  case 2:
+    drawCircle(50, 50, 30, COLOR_RED);
     cur_cycle += 300;
     siren_state ++;
     break;
   case 3:
+    drawCircle(90, 70, 10, COLOR_ORANGE);
   case 4:
+    drawCircle(50, 130, 20, COLOR_PINK);
     cur_cycle += 400;
     siren_state ++;
     break;
   case 5:
   case 6:
+    drawCircle(40, 30, 15, COLOR_BLUE);
     siren_state++;
     break;
   case 7:
   case 8:
-    green_on = 1;
-    red_on = 0;
+    drawCircle(10, 85, 30, COLOR_YELLOW);
     cur_cycle -= 500;
     siren_state ++;
     break;
   case 9:
+    drawCircle(140, 80, 40, COLOR_GREEN);
     cur_cycle -= 300;
     siren_state ++;
     break;
   case 10:
+    drawCircle(100, 50, 20, COLOR_WHITE);
     cur_cycle -= 200;
     siren_state = 0;
     break;
   }
-  led_update();
+  
   buzzer_set_period(cur_cycle);
 }  
 
+void starsBackgroundStateAdvance()
+{
+  static char cur_state = 0;
 
-void binary_count_state_advance()
-  {
-  static int binary_count_state = 0;
-
-  binary_count_state = (binary_count_state + 1) % 4; // Increment binary count and take modulo
-
-   switch (binary_count_state) {
-  case 0:
-    red_on = 0;
-    green_on = 0;
-    break;
-  case 1:
-    red_on = 0;
-    green_on = 1;
-    break;
-  case 2:
-    red_on = 1;
-    green_on = 0;
-    break;
-  case 3:
-     red_on = 1;
-    green_on = 1;
-    break;
+  if(cur_state == 0) {
+    drawStarryBackground2();
+    cur_state ++;
+  } else {
+    drawStarryBackground1();
+    cur_state = 0;
   }
+  
 }
  
 
 void update_blink_and_buzz(int frequency)
 {
   buzzer_set_period(frequency);
-  //binary_count_state_advance();
-  //led_update();
+  starsBackgroundStateAdvance();
   cur_note ++;
 }
  

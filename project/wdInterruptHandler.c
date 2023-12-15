@@ -6,7 +6,7 @@
 #include "switches.h"
 #include "stateMachines.h"
 
-char button_sequence_state = 0;
+char button_sequence_state = -1;
 
 void
 __interrupt_vec(WDT_VECTOR) WDT(){ /* 250 interrupts/sec */
@@ -20,18 +20,11 @@ __interrupt_vec(WDT_VECTOR) WDT(){ /* 250 interrupts/sec */
       secondCount = 0;
     }
     break;
-  case 1:
-    buzzer_set_period(0);
-    dim_green_state_advance();
-    dim_red_state_advance();
-    break;
   case 2:
     if(secondCount >= 62) {
       siren_state_advance();
       secondCount = 0;
     }
     break;
-  case 3:
-    break;
-   }
+  }
 }
